@@ -1,0 +1,4 @@
+В командной строке выполнить для создания дампа с помощью утилиты mysqldump, отправляя выходной поток в файл:
+mysqldump -u root -p example > c:\dump.sql
+Его же и загрузить утилитой mysql в базу sample:
+mysql -u root -p sample < c:\dump.sql

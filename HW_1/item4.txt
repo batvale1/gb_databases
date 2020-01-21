@@ -1,0 +1,3 @@
+Посредством передачи значения параметру -w вида "true limit 100" формируется запрос вида "... FROM `help_keyword` WHERE = TRUE limit 100".
+Ну и направляем вывод в файл, получая дамп:
+mysqldump -u root -p -w "true limit 100" mysql help_keyword > c:\dump_mysql_tbl.sql
