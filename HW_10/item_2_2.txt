@@ -1,0 +1,12 @@
+2) При помощи базы данных Redis решите задачу поиска имени пользователя по электронному адресу и наоборот, поиск электронного адреса пользователя по его имени.
+
+127.0.0.1:6379> set test_user test_user@mail.ru
+OK
+127.0.0.1:6379> set test_user@mail.ru test_user
+OK
+127.0.0.1:6379> get test_user@mail.ru
+"test_user"
+127.0.0.1:6379> get test_user
+"test_user@mail.ru"
+127.0.0.1:6379>
+

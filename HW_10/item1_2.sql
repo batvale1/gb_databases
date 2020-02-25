@@ -1,0 +1,35 @@
+/*2. (по желанию) —оздайте SQL-запрос, который помещает в таблицу users миллион записей.*/
+
+-- € сделал без цикла, хот€ может надо было в цикле попробывать))
+-- вопрос: это нормально, что € юзаю создание пустых записей через джоины с тем, чтобы потом отправить их скопом в запись?
+
+-- сделаем тестовую Ѕƒ
+drop database if exists test_db;
+create database test_db;
+use test_db;
+
+-- создадим таблицу логов
+drop table if exists test_table;
+
+create table test_table (
+	id serial primary key
+);
+
+-- создадим 1 млн пустых записей и разом их всех отправим на запись
+insert into test_table
+SELECT @i:=@i+1 AS counter 
+FROM (
+SELECT a.a
+FROM (
+	SELECT 0 AS a UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9) AS a
+	CROSS JOIN (SELECT 0 AS a UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9) AS b
+	CROSS JOIN (SELECT 0 AS a UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9) AS c
+	CROSS JOIN (SELECT 0 AS a UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9) AS d
+	CROSS JOIN (SELECT 0 AS a UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9) AS e
+	CROSS JOIN (SELECT 0 AS a UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9) AS f
+) a
+JOIN (SELECT @i := 0) r1
+where @i < 1000000;
+
+select count(*) from test_table;
+

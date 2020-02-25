@@ -1,0 +1,18 @@
+3) Организуйте хранение категорий и товарных позиций учебной базы данных shop в СУБД MongoDB.
+use shop
+switched to db shop
+> db.products.insert({'product_name':'product name 1', 'category_name': 'videocards'})
+WriteResult({ "nInserted" : 1 })
+> db.products.insert({'product_name':'product name 2', 'category_name': 'motherboards'})
+WriteResult({ "nInserted" : 1 })
+> db.categories.insert({'category_name': 'videocards'})
+WriteResult({ "nInserted" : 1 })
+> db.categories.insert({'category_name': 'motherboards'})
+WriteResult({ "nInserted" : 1 })
+> db.products.find()
+{ "_id" : ObjectId("5e5523eff1f634b500287508"), "product_name" : "product name 1", "category_name" : "videocards" }
+{ "_id" : ObjectId("5e552401f1f634b500287509"), "product_name" : "product name 2", "category_name" : "motherboards" }
+> db.categories.find()
+{ "_id" : ObjectId("5e55242af1f634b50028750a"), "category_name" : "videocards" }
+{ "_id" : ObjectId("5e552445f1f634b50028750b"), "category_name" : "motherboards" }
+>
